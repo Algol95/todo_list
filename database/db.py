@@ -1,1 +1,1 @@
-DATABASE_URL = "postgresql+pg8000://postgres:1234@localhost/todo_db"
+DATABASE_URL = "postgresql+pg8000://postgres:root@localhost/todo_db"
