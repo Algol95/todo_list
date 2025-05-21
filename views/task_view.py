@@ -25,7 +25,6 @@ def runMenu():
             case "1":
                 print(createTask(db))
             case "2":
-                print("Listado de tareas:")
                 pp(viewAllTasks(db))
             case "3":
                 print(viewTask(db))
@@ -61,7 +60,7 @@ def viewAllTasks(db):
         tasks = TaskController.getAllTasks(db)
         if not tasks:
             raise ValueError("No hay tareas")
-        return f"{tasks}"
+        return tasks
     except Exception as e:
         print(f"Error: {e}")
 
@@ -78,11 +77,12 @@ def viewTask(db):
 def updateTask(db):
     try:
         task_id = int(input("ID de la tarea: "))
-        task = TaskController.getTaskById(db, task_id)
-        if not task:
+        taskExist = TaskController.getTaskById(db, task_id)
+        if not taskExist:
             raise ValueError("No existe la tarea")
         new_title = input("Nuevo título de la tarea: ")
         new_description = input("Nueva descripción de la tarea: ")
+        new_state = 0
         while True:
             print("Estados disponibles:\n--------------------\n1. To Do\n2. In Progress\n3. Done\n\
 --------------------\n4. Salir")

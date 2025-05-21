@@ -24,7 +24,7 @@ class TaskController():
         if new_description:
             task.description = new_description
         if new_state:
-            task.state = new_state
+            task.state_id = new_state
         db.commit()
         db.refresh(task)
         return task
