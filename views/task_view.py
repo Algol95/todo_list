@@ -1,49 +1,113 @@
-from controllers import *
+from controllers import TaskController, UserController, StateController
 from database import SessionLocal
-
+from pprint import pp
+from models import Task, User, State
 
 def menu():
     print("Menú:")
+    print("=======================")
     print("1. Crear tarea")
     print("2. Ver todas las tareas")
     print("3. Ver tarea")
     print("4. Actualizar tarea")
     print("5. Eliminar tarea")
     print("6. Salir")
+    print("=======================")
     option = input("Introduce un índice: ")
     return option
 
-def runMenu ():
+def runMenu():
     db = SessionLocal()
-    option = menu()
-    while option !=6 :
-        option = 0
+    while True:
+        option = ""
+        option = menu()
         match option:
             case "1":
                 print(createTask(db))
             case "2":
-                print("Viste todas las tareas")
+                print("Listado de tareas:")
+                pp(viewAllTasks(db))
             case "3":
-                print("Viste una tarea")
+                print(viewTask(db))
             case "4":
-                print("Actualizaste tarea")
+                print(updateTask(db))
             case "5":
-                print("Eliminaste tarea")
+                print(deleteTask(db))
             case "6":
+                print("Saliendo...")
+                db.close()
                 break
             case _:
-                print("No es un valor aceptado")
+                print("No es un valor aceptado, vuelve a intentarlo\n")
 
 def createTask(db):
     try:
         title = input("Nombre de la tarea: ")
         description = input("Descripción de la tarea: ")
         username = input("Usuario a asignar(ej: admin): ")
-        user = UserController.findUserByUsername(username)
+        user = UserController.findUserByUsername(db, username)
         if not user:
             raise ValueError("El usuario no existe")
-        state = StateController.findStateByName("To Do")
+        state = StateController.findStateByName(db, "To Do")
+        print(state)
+        print(user)
         task = TaskController.createTask(db, title, description, state.id, user.id)
         return f"Creaste una tarea:\n {task}"
+    except Exception as e:
+        print(f"\nError: {e}")
+
+def viewAllTasks(db):
+    try:
+        tasks = TaskController.getAllTasks(db)
+        if not tasks:
+            raise ValueError("No hay tareas")
+        return f"{tasks}"
+    except Exception as e:
+        print(f"Error: {e}")
+
+def viewTask(db):
+    try:
+        task_id = int(input("ID de la tarea: "))
+        task = TaskController.getTaskById(db, task_id)
+        if not task:
+            raise ValueError("No existe la tarea")
+        return task
+    except Exception as e:
+        print(f"Error: {e}")
+
+def updateTask(db):
+    try:
+        task_id = int(input("ID de la tarea: "))
+        task = TaskController.getTaskById(db, task_id)
+        if not task:
+            raise ValueError("No existe la tarea")
+        new_title = input("Nuevo título de la tarea: ")
+        new_description = input("Nueva descripción de la tarea: ")
+        while True:
+            print("Estados disponibles:\n--------------------\n1. To Do\n2. In Progress\n3. Done\n\
+--------------------\n4. Salir")
+            new_state = int(input("Nuevo estado de la tarea: "))
+            if new_state in [1, 2, 3]:
+                break
+            elif new_state == 4:
+                new_state = None
+                break
+            else:
+                print("Estado no válido, vuelve a intentarlo")
+        task = TaskController.updateTask(db, task_id, new_title, new_description, new_state)
+        return f"\nActualizaste la tarea:\n {task}"
+    except Exception as e:
+        print(f"Error: {e}")
+
+def deleteTask(db):
+    try:
+        task_id = int(input("ID de la tarea: "))
+        task = TaskController.getTaskById(db, task_id)
+        if not task:
+            raise ValueError("No existe la tarea")
+        if TaskController.deleteTask(db, task_id):
+            return "Eliminaste la tarea"
+        else:
+            return "No se pudo eliminar la tarea"
     except Exception as e:
         print(f"Error: {e}")
