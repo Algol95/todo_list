@@ -10,10 +10,10 @@ class TaskController():
         return task
 
     def getAllTasks(db: Session):
-        return db.query(Task).all
+        return db.query(Task).all()
 
     def getTaskById(db: Session, task_id: int):
-        return db.query(Task).filter(Task.id == task_id).first
+        return db.query(Task).filter(Task.id == task_id).first()
 
     def updateTask(db: Session, task_id: int, new_title: str, new_description: str, new_state: int):
         task = TaskController.getTaskById(db, task_id)
