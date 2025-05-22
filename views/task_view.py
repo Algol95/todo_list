@@ -71,7 +71,7 @@ def updateTask(db):
                 new_state = None
                 break
             else:
-                print("Estado no válido, vuelve a intentarlo")
+                print("\nEstado no válido, vuelve a intentarlo\n")
         task = TaskController.updateTask(db, task_id, new_title, new_description, new_state)
         return f"\nActualizaste la tarea:\n {task}"
     except ValueError as ve:
