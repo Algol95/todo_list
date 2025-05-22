@@ -1,16 +1,29 @@
 from models import Task
 from sqlalchemy.orm import Session
+from controllers import UserController
 
 class TaskController():
-    def createTask(db: Session, title: str, description: str, state_id: int, user_id: int):
-        task = Task(title=title, description=description, state_id=state_id, user_id=user_id)
-        db.add(task)
-        db.commit()
-        db.refresh(task)
-        return task
+    def createTask(db: Session, title: str, description: str, state_id: int, username: str):
+        try:
+            user = UserController.findUserByUsername(db, username)
+            if not user:
+                raise ValueError("El usuario no existe")
+            task = Task(title=title, description=description, state_id=state_id, user_id=user.id)
+            db.add(task)
+            db.commit()
+            db.refresh(task)
+            return f"Creaste una tarea:\n {task}"
+        except Exception as e:
+            return f"\nError: {e}"
 
     def getAllTasks(db: Session):
-        return db.query(Task).all()
+        try:
+            tasks = db.query(Task).all()
+            if not tasks:
+                raise ValueError("No hay tareas")
+            return tasks
+        except Exception as e:
+            return f"Error: {e}"
 
     def getTaskById(db: Session, task_id: int):
         return db.query(Task).filter(Task.id == task_id).first()

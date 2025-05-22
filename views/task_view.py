@@ -39,29 +39,18 @@ def runMenu():
                 print("No es un valor aceptado, vuelve a intentarlo\n")
 
 def createTask(db):
-    try:
+
         title = input("Nombre de la tarea: ")
         description = input("Descripción de la tarea: ")
         username = input("Usuario a asignar(ej: admin): ")
-        user = UserController.findUserByUsername(db, username)
-        if not user:
-            raise ValueError("El usuario no existe")
         state = StateController.findStateByName(db, "To Do")
-        print(state)
-        print(user)
-        task = TaskController.createTask(db, title, description, state.id, user.id)
-        return f"Creaste una tarea:\n {task}"
-    except Exception as e:
-        print(f"\nError: {e}")
+        return TaskController.createTask(db, title, description, state.id, username)
+        
+
 
 def viewAllTasks(db):
-    try:
-        tasks = TaskController.getAllTasks(db)
-        if not tasks:
-            raise ValueError("No hay tareas")
-        return tasks
-    except Exception as e:
-        print(f"Error: {e}")
+    return TaskController.getAllTasks(db)
+        
 
 def viewTask(db):
     try:
