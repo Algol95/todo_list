@@ -1,7 +1,6 @@
 from controllers import TaskController, UserController, StateController
 from database import SessionLocal
 from pprint import pp
-from models import Task, User, State
 
 def menu():
     print("Menú:")
