@@ -39,35 +39,25 @@ def runMenu():
                 print("No es un valor aceptado, vuelve a intentarlo\n")
 
 def createTask(db):
-
-        title = input("Nombre de la tarea: ")
-        description = input("Descripción de la tarea: ")
-        username = input("Usuario a asignar(ej: admin): ")
-        state = StateController.findStateByName(db, "To Do")
-        return TaskController.createTask(db, title, description, state.id, username)
-        
-
+    title = input("Nombre de la tarea: ")
+    description = input("Descripción de la tarea: ")
+    username = input("Usuario a asignar(ej: admin): ")
+    state = StateController.findStateByName(db, "To Do")
+    return TaskController.createTask(db, title, description, state.id, username)
 
 def viewAllTasks(db):
     return TaskController.getAllTasks(db)
-        
 
 def viewTask(db):
     try:
         task_id = int(input("ID de la tarea: "))
-        task = TaskController.getTaskById(db, task_id)
-        if not task:
-            raise ValueError("No existe la tarea")
-        return task
-    except Exception as e:
-        print(f"Error: {e}")
+        return TaskController.getTaskById(db, task_id)
+    except ValueError as ve:
+        return f"La ID debe ser un número entero: {ve}"
 
 def updateTask(db):
     try:
         task_id = int(input("ID de la tarea: "))
-        taskExist = TaskController.getTaskById(db, task_id)
-        if not taskExist:
-            raise ValueError("No existe la tarea")
         new_title = input("Nuevo título de la tarea: ")
         new_description = input("Nueva descripción de la tarea: ")
         new_state = 0
@@ -84,18 +74,12 @@ def updateTask(db):
                 print("Estado no válido, vuelve a intentarlo")
         task = TaskController.updateTask(db, task_id, new_title, new_description, new_state)
         return f"\nActualizaste la tarea:\n {task}"
-    except Exception as e:
-        print(f"Error: {e}")
+    except ValueError as ve:
+        print(f"El dato requerido debe ser un entero: {ve}")
 
 def deleteTask(db):
     try:
         task_id = int(input("ID de la tarea: "))
-        task = TaskController.getTaskById(db, task_id)
-        if not task:
-            raise ValueError("No existe la tarea")
-        if TaskController.deleteTask(db, task_id):
-            return "Eliminaste la tarea"
-        else:
-            return "No se pudo eliminar la tarea"
-    except Exception as e:
-        print(f"Error: {e}")
+        return TaskController.deleteTask(db, task_id)
+    except ValueError as ve:
+        print(f"La id debe ser un número entero: {ve}")
