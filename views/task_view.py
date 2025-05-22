@@ -3,16 +3,18 @@ from database import SessionLocal
 from pprint import pp
 
 def menu():
-    print("Menú:")
-    print("=======================")
+    print("\n\033[36m=======================")
+    print("|         Menú        |")
+    print("=======================\033[0m")
     print("1. Crear tarea")
     print("2. Ver todas las tareas")
     print("3. Ver tarea")
     print("4. Actualizar tarea")
     print("5. Eliminar tarea")
-    print("6. Salir")
     print("=======================")
-    option = input("Introduce un índice: ")
+    print("6. Salir")
+
+    option = input("\nIntroduce un índice: ")
     return option
 
 def runMenu():
