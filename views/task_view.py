@@ -34,11 +34,11 @@ def runMenu():
             case "5":
                 print(deleteTask(db))
             case "6":
-                print("\033[91mSaliendo...\033[0m")
+                print("\n\033[91mSaliendo...\033[0m")
                 db.close()
                 break
             case _:
-                print("\033[31mNo es un valor aceptado, vuelve a intentarlo\033[0m\n") 
+                print("\n\033[31m❌ No es un valor aceptado, vuelve a intentarlo\033[0m\n")
 
 def createTask(db):
     title = input("\033[33m► Nombre de la tarea: ")
@@ -55,7 +55,7 @@ def viewTask(db):
         task_id = int(input("\033[33m► ID de la tarea: \033[0m"))
         return TaskController.getTaskById(db, task_id)
     except ValueError as ve:
-        return f"\033[31mLa ID debe ser un número entero: {ve}\033[0m"
+        return f"\n\033[31m❌ La ID debe ser un número entero: {ve}\033[0m"
 
 def updateTask(db):
     try:
@@ -64,9 +64,9 @@ def updateTask(db):
         new_description = input("► Nueva descripción de la tarea: \033[0m")
         new_state = 0
         while True:
-            print("\n\033[36mEstados disponibles:\n--------------------\n1. To Do\n2. In Progress\n3. Done\n\
---------------------\033[0m\n\033[91m4. Salir\033[0m")
-            new_state = int(input("\033[33m► Nuevo estado de la tarea: \033[0m"))
+            print("\n\033[36m--------------------\nEstados disponibles:\n--------------------\n1. To Do\n\
+2. In Progress\n3. Done\n--------------------\033[0m\n\033[91m4. Salir\033[0m")
+            new_state = int(input("\n\033[33m► Nuevo estado de la tarea: \033[0m"))
             if new_state in [1, 2, 3]:
                 break
             elif new_state == 4:
@@ -74,14 +74,13 @@ def updateTask(db):
                 break
             else:
                 print("\033[31m\nEstado no válido, vuelve a intentarlo\n\033[0m")
-        task = TaskController.updateTask(db, task_id, new_title, new_description, new_state)
-        return f"\nActualizaste la tarea:\n {task}"
+        return TaskController.updateTask(db, task_id, new_title, new_description, new_state)
     except ValueError as ve:
-        print(f"\033[31mEl dato requerido debe ser un entero: {ve}\033[0m")
+        return f"\033[31m❌ El dato requerido debe ser un entero: {ve}\033[0m"
 
 def deleteTask(db):
     try:
         task_id = int(input("\033[33m►ID de la tarea: \033[0m"))
         return TaskController.deleteTask(db, task_id)
     except ValueError as ve:
-        print(f"\033[31mLa id debe ser un número entero: {ve}\033[0m")
+        return f"\033[31m4❌ La id debe ser un número entero: {ve}\033[0m"
