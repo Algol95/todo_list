@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from models import User
 
 class UserController():
+            
     def findUserByUsername(db: Session, username: str):
         try:
             if not username:
@@ -11,7 +12,7 @@ class UserController():
                 raise Exception("El usuario no existe")
             return user
         except Exception as e:
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"
 
     def createUser(db: Session, username: str, password: str):
         try:
@@ -24,4 +25,4 @@ class UserController():
             return user
         except Exception as e:
             db.rollback()
-            return f"Error: {e}"
+            return f"\033[31mError: {e}\033[0m"

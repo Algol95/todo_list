@@ -19,5 +19,7 @@ class Task(Base):
     state = relationship("State", back_populates="tasks")
 
     def __repr__(self):
-        return f"Task(id={self.id}, title={self.title}, description={self.description}), \
-user={self.user.username}, state={self.state.name}"
+        return f"\033[32mTask(id={self.id}, title={self.title}, description={self.description}), \
+user={self.user.username}, state={self.state.name}\033[0m"
+       
+    

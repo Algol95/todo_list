@@ -1,5 +1,5 @@
 from seed import seed_users, seed_states
-from views import runMenu
+from views.task_view import runMenu
 
 def main():
     seed_users()

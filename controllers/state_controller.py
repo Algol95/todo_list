@@ -14,7 +14,7 @@ class StateController():
             return state
         except Exception as e:
             db.rollback()
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"
 
     def findStateByName(db: Session, name: str):
         try:
@@ -25,4 +25,4 @@ class StateController():
                 raise Exception("El estado no existe")
             return state
         except Exception as e:
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"

@@ -16,10 +16,10 @@ class TaskController():
             db.add(task)
             db.commit()
             db.refresh(task)
-            return f"Creaste una tarea:\n {task}"
+            return f"\n\033[32mCreaste una tarea:\n {task}\033[0m"
         except Exception as e:
             db.rollback()
-            return f"\n{e}"
+            return f"\033[31m\n{e}\033[0m"
 
     def getAllTasks(db: Session):
         try:
@@ -28,7 +28,7 @@ class TaskController():
                 raise Exception("No hay tareas")
             return tasks
         except Exception as e:
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"
 
     def getTaskById(db: Session, task_id: int):
         try:
@@ -37,13 +37,13 @@ class TaskController():
                 raise Exception("No existe la tarea")
             return task
         except Exception as e:
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"
 
     def updateTask(db: Session, task_id: int, new_title: str, new_description: str, new_state: int):
         try:
             task = TaskController.getTaskById(db, task_id)
-            if not task:
-                raise Exception("No existe la tarea")
+            if isinstance(task, str):
+                raise Exception(task)
             if new_title:
                 task.title = new_title
             if new_description:
@@ -55,7 +55,7 @@ class TaskController():
             return task
         except Exception as e:
             db.rollback()
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"
 
     def deleteTask(db: Session, task_id: int):
         try:
@@ -64,7 +64,7 @@ class TaskController():
                 raise Exception(task)
             db.delete(task)
             db.commit()
-            return "Eliminaste la tarea"
+            return "\033[32mEliminaste la tarea\033[0m"
         except Exception as e:
             db.rollback()
-            return f"{e}"
+            return f"\033[31m{e}\033[0m"
