@@ -1,4 +1,3 @@
-
 # 📝 Proyecto TODO List - Python Vanilla + PostgreSQL
 
 Este proyecto es un ejemplo funcional de una aplicación de consola que permite gestionar tareas (CRUD) utilizando **Python**, **arquitectura MVC**, **SQLAlchemy** y **PostgreSQL**, sin frameworks.
@@ -48,7 +47,7 @@ Usa este comando (fuera del entorno virtual):
 psql -U postgres -c "CREATE DATABASE todo_db;"
 ```
 
-> Asegúrate de tener acceso a `psql` y que tu contraseña sea `1234`.  
+> Asegúrate de tener acceso a `psql`  
 > Puedes modificarla en `database/db.py`.
 
 ---
@@ -58,9 +57,10 @@ psql -U postgres -c "CREATE DATABASE todo_db;"
 Edita `database/db.py` y asegúrate de que esta línea esté así:
 
 ```python
-DATABASE_URL = "postgresql+pg8000://postgres:1234@localhost/todo_db"
+DATABASE_URL = "postgresql+pg8000://user:password@localhost/todo_db"
 ```
 
+> Recuerda poner tu usuario y contraseña de postgre
 > Usamos el driver `pg8000` en lugar de `psycopg2`.
 
 ---
@@ -78,8 +78,10 @@ alembic init alembic
 - En `alembic.ini` revisa:
 
   ```ini
-  sqlalchemy.url = postgresql+pg8000://postgres:1234@localhost/todo_db
+  sqlalchemy.url = postgresql+pg8000://user:password@localhost/todo_db
   ```
+
+  ► Si tienes un usuario distino a postgres y root recuerda cambiarlo
 
 - En `alembic/env.py`, importa el modelo y apunta a los metadatos:
 
@@ -103,7 +105,7 @@ alembic upgrade head
 Lanza el menú desde la raíz del proyecto:
 
 ```bash
-python views/task_view.py
+python main.py
 ```
 
 Y verás:
@@ -128,9 +130,12 @@ todo_list/
 ├── alembic/              # Archivos de migración
 ├── controllers/          # Lógica de negocio (CRUD)
 ├── database/             # Conexión a la DB
-├── models/               # Definición de modelos SQLAlchemy
+├── models/               # Definición de modelos
+├── seed/                 # Población inicial de BBDD
+SQLAlchemy
 ├── views/                # Interfaz por consola
 │
+├── main.py
 ├── alembic.ini
 ├── requirements.txt
 ├── README.md
