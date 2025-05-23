@@ -9,13 +9,13 @@ class User(Base):
     Author:
             Lorena Martínez
             Ángel Aragón
-    
+
     Attributes:
         id (int): ID del usuario
         username (str): Nombre de usuario
         password (str): Contraseña del usuario
         tasks (list): Lista de tareas asociadas al usuario, relacionado con el modelo Task
-    
+
     Methods:
         __repr__(): Representación en cadena del objeto User
     """

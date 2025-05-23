@@ -2,6 +2,17 @@ from database import SessionLocal
 from models import User
 
 def seed_users():
+    """
+    Función para sembrar los usuarios iniciales en la base de datos.
+    Crea los usuarios "admin", "lorenitarechulona" y "angelonpelon" si no existen.
+
+    Author:
+        Lorena Martínez
+        Ángel Aragón
+
+    Raises:
+        Exception: Si ocurre un error al sembrar los estados.
+    """
     db = SessionLocal()
     try:
         users = [

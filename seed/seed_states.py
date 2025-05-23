@@ -2,6 +2,17 @@ from database import SessionLocal
 from models import State
 
 def seed_states():
+    """
+    Función para sembrar los estados iniciales en la base de datos.
+    Crea los estados "To Do", "In Progress" y "Done" si no existen.
+
+    Author:
+        Lorena Martínez
+        Ángel Aragón
+
+    Raises:
+        Exception: Si ocurre un error al sembrar los estados.
+    """
     db = SessionLocal()
     try:
         states = ["To Do", "In Progress", "Done"]
