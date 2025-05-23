@@ -13,6 +13,16 @@ Este proyecto es un ejemplo funcional de una aplicación de consola que permite 
 
 ---
 
+## 📄 Documentación
+
+Aplicación documentada con Pdoc 🐍
+
+Para acceder a ella acceder a la carpeta `docs_html > index.html`
+
+![Pdoc](https://i.imgur.com/ApyrQvQ.png)
+
+---
+
 ## ⚙️ Configuración inicial
 
 ### 1. Clona el repositorio (si es necesario)
