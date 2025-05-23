@@ -3,6 +3,21 @@ from sqlalchemy.orm import relationship
 from database.db import Base
 
 class State(Base):
+    """
+    Modelo de la tabla states
+
+    Author:
+            Lorena Martínez
+            Ángel Aragón
+
+    Attributes:
+        id (int): ID del estado
+        name (str): Nombre del estado
+        tasks (list): Lista de tareas asociadas al estado, relacionado con el modelo Task
+        
+    Methods: 
+        __repr__(): Representación en cadena del objeto State
+    """
     __tablename__ = "states"
 
     id = Column(Integer, primary_key=True)
