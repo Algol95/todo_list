@@ -8,19 +8,19 @@ class Task(Base):
     """
     Modelo de la tabla tasks
 
-    Author:
+    Author:  
         Lorena Martínez
         Ángel Aragón
 
-    Attributes:
-        id (int): ID de la tarea
-        title (str): Título de la tarea
-        description (str): Descripción de la tarea
-        user_id (int): ID del usuario asociado a la tarea, relacionado con el modelo User
-        state_id (int): ID del estado asociado a la tarea, relacionado con el modelo State
+    Attributes:  
+        `id (int)`: ID de la tarea  
+        `title (str)`: Título de la tarea  
+        `description (str)`: Descripción de la tarea  
+        `user_id (int)`: ID del usuario asociado a la tarea, relacionado con el modelo User  
+        `state_id (int)`: ID del estado asociado a la tarea, relacionado con el modelo State
     
-    Methods:
-        __repr__(): Representación en cadena del objeto Task
+    Methods:  
+        `__repr__()`: Representación en cadena del objeto Task
     """
 
     __tablename__ = "tasks"

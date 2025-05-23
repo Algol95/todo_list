@@ -1,18 +1,18 @@
 """Task View Module
 Este módulo contiene las funciones para interactuar con el usuario
 
-Author:
-    Lorena Martínez
-    Ángel Aragón
+Author:  
+    Lorena Martínez  
+    Ángel Aragón  
 
-Methods:
-    **menu**(): Muestra el menú principal
-    **runMenu**(): Ejecuta el menú y maneja las opciones del usuario
-    **createTask**(db): Crea una nueva tarea
-    **viewAllTasks**(db): Muestra todas las tareas
-    **viewTask**(db): Muestra una tarea específica
-    **updateTask**(db): Actualiza una tarea existente
-    **deleteTask**(db): Elimina una tarea existente
+Methods:  
+    `menu()`: Muestra el menú principal  
+    `runMenu()`: Ejecuta el menú y maneja las opciones del usuario  
+    `createTask(db)`: Crea una nueva tarea  
+    `viewAllTasks(db)`: Muestra todas las tareas  
+    `viewTask(db)`: Muestra una tarea específica  
+    `updateTask(db)`: Actualiza una tarea existente  
+    `deleteTask(db)`: Elimina una tarea existente
 """
 from controllers import TaskController, UserController, StateController
 from database import SessionLocal
@@ -69,8 +69,8 @@ def createTask(db):
     """Crea una nueva tarea
     Se le pide al usuario el título, la descripción y el nombre de usuario
 
-    Args:
-        db (Session): Sesión activa de SQLAlchemy
+    Args:  
+        `db (Session)`: Sesión activa de SQLAlchemy
 
     Returns:
         str: Mensaje de tarea creada o mensaje de error
@@ -84,8 +84,8 @@ def createTask(db):
 def viewAllTasks(db):
     """Muestra todas las tareas
 
-    Args:
-        db (Session): Sesión activa de SQLAlchemy
+    Args:  
+        `db (Session)`: Sesión activa de SQLAlchemy
 
     Returns:
         List[Task]/str: Lista de tareas o mensaje de error
@@ -96,10 +96,10 @@ def viewTask(db):
     """Muestra una tarea específica
     Se pide al usuario la ID de la tarea a buscar
 
-    Args:
-        db (Session): Sesión activa de SQLAlchemy
+    Args:  
+        `db (Session)`: Sesión activa de SQLAlchemy
 
-    Raises:
+    Raises:  
         ValueError: La ID debe ser un número entero
 
     Returns:
@@ -115,9 +115,9 @@ def updateTask(db):
     """Actualiza una tarea existente.
     Se le pide al usuario la ID de la tarea a actualizar, el nuevo título, la nueva descripción.
     Se muestra menu para actualizar estado y se le da la opción de salir sin actualizar el estado.
-    Args:
-        db (Session): Sesión activa de SQLAlchemy
-    Raises:
+    Args:  
+        `db (Session)`: Sesión activa de SQLAlchemy
+    Raises:  
         ValueError: La ID debe ser un número entero
     Returns:
         str: Mensaje de tarea actualizada o mensaje de error
@@ -146,9 +146,9 @@ def deleteTask(db):
     """Elimina una tarea existente.
     Se le pide al usuario la ID de la tarea a eliminar
 
-    Args:
-        db (Session): Sesión activa de SQLAlchemy
-    Raises:
+    Args:  
+        `db (Session)`: Sesión activa de SQLAlchemy
+    Raises:  
         ValueError: La ID debe ser un número entero
 
     Returns:

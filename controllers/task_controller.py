@@ -6,31 +6,31 @@ class TaskController():
     """
     Controlador para operaciones relacionadas con el modelo Task.
 
-    Author:
-        Lorena Martínez
-        Ángel Aragón
+    Author:  
+        Lorena Martínez.  
+        Ángel Aragón.  
 
-    Methods:
-        **createTask**(db, title, description, state_id, usename): Crea una nueva tarea en BBDD
-        **getAllTasks**(db): Devuelve una lista de todas las tareas
-        **getTaskById**(db, task_id): Devuelve una tarea por su id
-        **updateTask**(db, task_id, new_title, new_description, new_state): Actualiza una tarea
-        **deleteTask**(db, task_id): Elimina una tarea por su id
+    Methods:  
+        `createTask(db, title, description, state_id, usename):` Crea una nueva tarea en BBDD  
+        `getAllTasks(db):` Devuelve una lista de todas las tareas  
+        `getTaskById(db, task_id):` Devuelve una tarea por su id  
+        `updateTask(db, task_id, new_title, new_description, new_state):` Actualiza una tarea  
+        `deleteTask(db, task_id):` Elimina una tarea por su id  
     """
     def createTask(db: Session, title: str, description: str, state_id: int, username: str):
         """Crea una nueva tarea en BBDD
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            title (str): Título de la tarea
-            description (str): Descripción de la tarea
-            state_id (int): ID del estado de la tarea
-            username (str): Nombre de usuario del dueño de la tarea
+        Args:  
+            `db (Session):` Sesión activa de SQLAlchemy  
+            `title (str):` Título de la tarea  
+            `description (str):` Descripción de la tarea  
+            `state_id (int):` ID del estado de la tarea  
+            `username (str):` Nombre de usuario del dueño de la tarea  
 
-        Raises:
-            Exception: El título y la descripción no pueden estar vacíos
-            Exception: Id del estado no puede estar vacía
-            Exception: El usuario no existe
+        Raises:  
+            Exception: El título y la descripción no pueden estar vacíos  
+            Exception: Id del estado no puede estar vacía  
+            Exception: El usuario no existe  
 
         Returns:
             str: Mensaje de tarea creada o mensaje de error
@@ -55,10 +55,10 @@ class TaskController():
     def getAllTasks(db: Session):
         """Devuelve una lista de todas las tareas
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
+        Args:  
+            `db (Session):` Sesión activa de SQLAlchemy
 
-        Raises:
+        Raises:  
             Exception: No hay tareas
 
         Returns:
@@ -75,11 +75,11 @@ class TaskController():
     def getTaskById(db: Session, task_id: int):
         """Devuelve una tarea por su id
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            task_id (int): Id de la tarea
+        Args:  
+            `db (Session):` Sesión activa de SQLAlchemy  
+            `task_id (int):` Id de la tarea
 
-        Raises:
+        Raises:  
             Exception: No existe la tarea
 
         Returns:
@@ -96,14 +96,14 @@ class TaskController():
     def updateTask(db: Session, task_id: int, new_title: str, new_description: str, new_state: int):
         """Actualiza una tarea
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            task_id (int): Id de la tarea
-            new_title (str): Nuevo titulo de la tarea
-            new_description (str): Nueva descripción de la tarea
-            new_state (int): Nuevo estado de la tarea
+        Args:  
+            `db (Session):` Sesión activa de SQLAlchemy  
+            `task_id (int):` Id de la tarea  
+            `new_title (str):` Nuevo titulo de la tarea  
+            `new_description (str):` Nueva descripción de la tarea  
+            `new_state (int):` Nuevo estado de la tarea  
 
-        Raises:
+        Raises:  
             Exception: La tarea a editar no existe
 
         Returns:
@@ -129,11 +129,11 @@ class TaskController():
     def deleteTask(db: Session, task_id: int):
         """Elimina una tarea por su id
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            task_id (int): Id de la tarea
+        Args:  
+            `db (Session):` Sesión activa de SQLAlchemy  
+            `task_id (int):` Id de la tarea  
 
-        Raises:
+        Raises:  
             Exception: La tarea a eliminar no existe
 
         Returns:

@@ -5,24 +5,24 @@ class StateController():
     """
     Controlador para operaciones relacionadas con el modelo State.
 
-    Author:
-        Lorena Martínez
+    Author:  
+        Lorena Martínez  
         Ángel Aragón
 
-    Methods:
-        **createState**(db, name): Crea estado nuevo
-        **findStateByName**(db, name): Busca el estado por nombre de estado
+    Methods:  
+        `createState(db, name)`: Crea estado nuevo  
+        `findStateByName(db, name)`: Busca el estado por nombre de estado
         
     """
 
     def createState(db: Session, name: str):
         """Crea estado nuevo
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            name (str): Nombre de estado
+        Args:  
+            `db (Session)`: Sesión activa de SQLAlchemy  
+            `name (str)`: Nombre de estado
 
-        Raises:
+        Raises:  
             Exception: El nombre de usuario no puede estar vacío
 
         Returns:
@@ -43,11 +43,11 @@ class StateController():
     def findStateByName(db: Session, name: str):
         """Busca el estado por nombre de estado
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            name (str): Nombre de estado
+        Args:  
+            `db (Session)`: Sesión activa de SQLAlchemy  
+            `name (str)`: Nombre de estado
 
-        Raises:
+        Raises:  
             Exception: El nombre de usuario no puede estar vacío
 
         Returns:

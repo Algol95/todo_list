@@ -5,9 +5,9 @@ def main():
     """
     Función principal que inicializa la base de datos y ejecuta el menú de la aplicación.
 
-    Author:
-        Lorena Martínez
-        Ángel Aragón
+    Author:  
+        Lorena Martínez  
+        Ángel Aragón  
     """
     seed_users()
     seed_states()

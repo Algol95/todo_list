@@ -6,11 +6,11 @@ def seed_users():
     Función para sembrar los usuarios iniciales en la base de datos.
     Crea los usuarios "admin", "lorenitarechulona" y "angelonpelon" si no existen.
 
-    Author:
-        Lorena Martínez
-        Ángel Aragón
+    Author:  
+        Lorena Martínez  
+        Ángel Aragón  
 
-    Raises:
+    Raises:  
         Exception: Si ocurre un error al sembrar los estados.
     """
     db = SessionLocal()

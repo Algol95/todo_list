@@ -5,25 +5,25 @@ class UserController():
     """
     Controlador para operaciones relacionadas con el modelo User.
 
-    Author:
-        Lorena Martínez
+    Author:  
+        Lorena Martínez  
         Ángel Aragón
 
-    Methods:
-        **findUserByUsername**(db, usename): Busca el usuario por nombre de usuario
-        **createUser**(db, username, password): Crea usuario nuevo
+    Methods:  
+        `findUserByUsername**(db, usename)`: Busca el usuario por nombre de usuario  
+        `createUser(db, username, password)`: Crea usuario nuevo
         
     """
     def findUserByUsername(db: Session, username: str):
         """Busca el usuario por nombre de usuario
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            username (str): Nombre de usuario
+        Args:  
+            `db (Session)`: Sesión activa de SQLAlchemy  
+            `username (str)`: Nombre de usuario
 
-        Raises:
-            Exception: El nombre de usuario no puede estar vacío
-            Exception: El usuario no existe
+        Raises:  
+            Exception: El nombre de usuario no puede estar vacío  
+            Exception: El usuario no existe  
 
         Returns:
             User/str: Objeto User / mensaje de error
@@ -41,12 +41,12 @@ class UserController():
     def createUser(db: Session, username: str, password: str):
         """Crea usuario nuevo
 
-        Args:
-            db (Session): Sesión activa de SQLAlchemy
-            username (str): Nombre de usuario
-            password (str): Contraseña
+        Args:  
+            `db (Session)`: Sesión activa de SQLAlchemy  
+            `username (str)`: Nombre de usuario  
+            `password (str)`: Contraseña
 
-        Raises:
+        Raises:  
             Exception: El nombre de usuario y la contraseña no pueden estar vacíos
 
         Returns:

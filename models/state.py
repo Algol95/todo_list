@@ -6,17 +6,17 @@ class State(Base):
     """
     Modelo de la tabla states
 
-    Author:
-            Lorena Martínez
-            Ángel Aragón
+    Author:  
+        Lorena Martínez  
+        Ángel Aragón
 
-    Attributes:
-        id (int): ID del estado
-        name (str): Nombre del estado
-        tasks (list): Lista de tareas asociadas al estado, relacionado con el modelo Task
+    Attributes:  
+        `id (int)`: ID del estado  
+        `name (str)`: Nombre del estado  
+        `tasks (list)`: Lista de tareas asociadas al estado, relacionado con el modelo Task
 
-    Methods:
-        __repr__(): Representación en cadena del objeto State
+    Methods:  
+        `__repr__()`: Representación en cadena del objeto State
     """
     __tablename__ = "states"
 
