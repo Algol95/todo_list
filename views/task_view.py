@@ -1,8 +1,29 @@
+"""Task View Module
+Este módulo contiene las funciones para interactuar con el usuario
+
+Author:
+    Lorena Martínez
+    Ángel Aragón
+
+Methods:
+    **menu**(): Muestra el menú principal
+    **runMenu**(): Ejecuta el menú y maneja las opciones del usuario
+    **createTask**(db): Crea una nueva tarea
+    **viewAllTasks**(db): Muestra todas las tareas
+    **viewTask**(db): Muestra una tarea específica
+    **updateTask**(db): Actualiza una tarea existente
+    **deleteTask**(db): Elimina una tarea existente
+"""
 from controllers import TaskController, UserController, StateController
 from database import SessionLocal
 from pprint import pp
 
 def menu():
+    """Muestra el menú principal y devuelve la opción seleccionada por el usuario
+
+    Returns:
+        str: Opción seleccionada por el usuario
+    """
     print("\n\033[36m=======================")
     print("|         Menú        |")
     print("=======================")
@@ -18,6 +39,10 @@ def menu():
     return option
 
 def runMenu():
+    """Ejecuta el menú y maneja las opciones del usuario.
+        Abre sesión con la BBDD, se ejecuta en bucle hasta que el usuario decida salir
+        y cierra la sesión.
+    """
     db = SessionLocal()
     while True:
         option = ""
@@ -41,6 +66,15 @@ def runMenu():
                 print("\n\033[31m❌ No es un valor aceptado, vuelve a intentarlo\033[0m\n")
 
 def createTask(db):
+    """Crea una nueva tarea
+    Se le pide al usuario el título, la descripción y el nombre de usuario
+
+    Args:
+        db (Session): Sesión activa de SQLAlchemy
+
+    Returns:
+        str: Mensaje de tarea creada o mensaje de error
+    """
     title = input("\033[33m► Nombre de la tarea: ")
     description = input("► Descripción de la tarea: ")
     username = input("► Usuario a asignar(ej: admin): \033[0m")
@@ -48,9 +82,29 @@ def createTask(db):
     return TaskController.createTask(db, title, description, state.id, username)
 
 def viewAllTasks(db):
+    """Muestra todas las tareas
+
+    Args:
+        db (Session): Sesión activa de SQLAlchemy
+
+    Returns:
+        List[Task]/str: Lista de tareas o mensaje de error
+    """
     return TaskController.getAllTasks(db)
 
 def viewTask(db):
+    """Muestra una tarea específica
+    Se pide al usuario la ID de la tarea a buscar
+
+    Args:
+        db (Session): Sesión activa de SQLAlchemy
+
+    Raises:
+        ValueError: La ID debe ser un número entero
+
+    Returns:
+        Task/str: Objeto Task o mensaje de error
+    """
     try:
         task_id = int(input("\033[33m► ID de la tarea: \033[0m"))
         return TaskController.getTaskById(db, task_id)
@@ -58,6 +112,16 @@ def viewTask(db):
         return f"\n\033[31m❌ La ID debe ser un número entero: {ve}\033[0m"
 
 def updateTask(db):
+    """Actualiza una tarea existente.
+    Se le pide al usuario la ID de la tarea a actualizar, el nuevo título, la nueva descripción.
+    Se muestra menu para actualizar estado y se le da la opción de salir sin actualizar el estado.
+    Args:
+        db (Session): Sesión activa de SQLAlchemy
+    Raises:
+        ValueError: La ID debe ser un número entero
+    Returns:
+        str: Mensaje de tarea actualizada o mensaje de error
+    """
     try:
         task_id = int(input("\033[33m► ID de la tarea: "))
         new_title = input("► Nuevo título de la tarea: ")
@@ -79,6 +143,17 @@ def updateTask(db):
         return f"\033[31m❌ El dato requerido debe ser un entero: {ve}\033[0m"
 
 def deleteTask(db):
+    """Elimina una tarea existente.
+    Se le pide al usuario la ID de la tarea a eliminar
+
+    Args:
+        db (Session): Sesión activa de SQLAlchemy
+    Raises:
+        ValueError: La ID debe ser un número entero
+
+    Returns:
+        str: Mensaje de tarea eliminada o mensaje de error
+    """
     try:
         task_id = int(input("\033[33m►ID de la tarea: \033[0m"))
         return TaskController.deleteTask(db, task_id)
