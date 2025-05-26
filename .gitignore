@@ -3,4 +3,6 @@
 venv/
 **/__pycache__/
 *.pyc
+__pycache__/
+*.py[cod]
 # The directory of the virtual environment
